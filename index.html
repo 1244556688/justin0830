@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的自我介紹</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <img src="me.jpg" alt="我的照片" class="profile-img">
+    <h1>大家好，我是justin</h1>
+    <p class="tagline">熱愛程式與設計的創作者</p>
+  </div>
+</header>
+
+<main class="container">
+  <section class="about">
+    <h2>關於我</h2>
+    <p>
+      我是一位對程式、設計和科技充滿熱情的人，喜歡用創意解決問題，並不斷學習新技能。
+      目前專注於網頁開發與多媒體應用。
+    </p>
+  </section>
+
+  <section class="skills">
+    <h2>技能</h2>
+    <ul>
+      <li>HTML / CSS / JavaScript</li>
+      <li>Python 程式設計</li>
+      <li>影像與音效編輯</li>
+    </ul>
+  </section>
+
+<h1>音效按鍵</h1>
+<p>點擊按鈕來播放聲音</p>
+
+<button class="btn" onclick="playSound('自我介紹.mp3')">請按這裡!</button>
+
+<script>
+  function playSound(file) {
+    const audio = new Audio(file);
+    audio.play();
+  }
+</script>
+
+  <section class="contact">
+    <h2>聯絡方式</h2>
+    <p>Email: <a href="719175@st.tc.edu.tw">719175@st.tc.edu.tw</a></p>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 justin — All rights reserved.</p>
+</footer>
+
+
+</body>
+</html>
