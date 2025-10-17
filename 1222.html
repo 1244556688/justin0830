@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自我介紹 — Justin</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* 背景粒子 */
+    body, html {margin:0; padding:0; height:100%; font-family: Inter, sans-serif; background:#0a0a0a; color:white;}
+    canvas {position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;}
+
+    /* 光暈文字 */
+    .glow-text {
+      font-weight: 800;
+      font-size: 2rem;
+      background: linear-gradient(90deg, #7C5CFF, #00E5A8);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 8px #7C5CFF, 0 0 16px #00E5A8;
+    }
+
+    /* 玻璃擬態面板 */
+    .glass {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+
+    .profile-img {
+      width:150px;
+      border-radius:16px;
+      border:2px solid #7C5CFF;
+      box-shadow: 0 0 20px #7C5CFF;
+    }
+
+    /* 霓虹按鈕 */
+    .btn {
+      padding: 12px 24px;
+      border-radius: 12px;
+      border: 2px solid #00E5A8;
+      background: transparent;
+      color: #00E5A8;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px #00E5A8, 0 0 16px #00E5A8;
+      margin-top: 12px;
+    }
+
+    .btn:hover {
+      background: #00E5A8;
+      color: #000;
+      box-shadow: 0 0 16px #00E5A8, 0 0 32px #00E5A8;
+      transform: translateY(-2px);
+    }
+
+    marquee {
+      font-weight:600;
+      font-size:14px;
+      color:#7C5CFF;
+      text-shadow: 0 0 6px #7C5CFF;
+      margin-bottom:12px;
+    }
+
+    a {
+      color: #00E5A8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 粒子背景 -->
+  <canvas id="particles"></canvas>
+
+  <marquee behavior="scroll" direction="left">
+    這是一個自我介紹的網頁，然後我還有出一個新的網站是一個音樂播放器可以上傳音樂。
+  </marquee>
+
+  <header class="hero flex flex-col items-center text-center mt-8">
+    <img src="me.jpg" alt="我的照片" class="profile-img mb-4">
+    <h1 class="glow-text text-4xl mb-2">大家好，我是 Justin</h1>
+    <p class="text-gray-300 mb-6">熱愛程式與設計的創作者</p>
+  </header>
+
+  <main class="container mx-auto px-6">
+    <section class="glass">
+      <h2 class="glow-text text-2xl mb-2">關於我</h2>
+      <p>我是一位對程式、設計和科技充滿熱情的人，喜歡用創意解決問題，並不斷學習新技能。  
+         目前專注於網頁開發與多媒體應用。</p>
+    </section>
+
+    <section class="glass">
+      <h2 class="glow-text text-2xl mb-2">技能</h2>
+      <ul class="list-disc pl-5">
+        <li>HTML / CSS / JavaScript</li>
+        <li>Python 程式設計</li>
+        <li>影像與音效編輯</li>
+      </ul>
+    </section>
+
+    <section class="glass text-center">
+      <h2 class="glow-text text-2xl mb-2">音樂按鍵</h2>
+      <p>點擊按鈕來播放聲音，真的很好聽。</p>
+      <button class="btn" onclick="playSound('自我介紹.mp3')">請按這裡!</button>
+    </section>
+
+    <section class="glass">
+      <p>新作的網站 音樂播放器: <a href="https://1244556688.github.io/123/" target="_blank">音樂播放器</a></p>
+    </section>
+  </main>
+
+  <footer class="text-center py-4 glass mt-8">
+    <p>© 2025 Justin — All rights reserved.</p>
+  </footer>
+
+  <script>
+    // 播放音樂
+    function playSound(file) {
+      const audio = new Audio(file);
+      audio.play();
+    }
+
+    // 粒子背景
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+    for(let i=0;i<120;i++){
+      particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, dx:(Math.random()-0.5)*1.2, dy:(Math.random()-0.5)*1.2, radius:Math.random()*2.5});
+    }
+
+    function animateParticles(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle="#7C5CFF";
+      particles.forEach(p=>{
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+        ctx.fill();
+        p.x+=p.dx;
+        p.y+=p.dy;
+        if(p.x<0||p.x>canvas.width)p.dx*=-1;
+        if(p.y<0||p.y>canvas.height)p.dy*=-1;
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    window.addEventListener("resize",()=>{
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+
+</body>
+</html>
